@@ -12,22 +12,24 @@ foi configurado, você pode abrir o arquivo JSON ```./curl/create_connector.json
 conector no kafka connect, levarão em consideração o diretório raiz para encontrar os arquivos
 necessários para seu funcionamento. 
 
-2. Executar o ```docker-compose up -d```.<br/>
+2. Dar permissão ```chmod 775 ./kafka-tools-sh/create-topic.sh```
+
+3. Executar o ```docker-compose up -d```.<br/>
 Conferir com ```docker ps``` para verificar se <strong>todas as máquinas estão UP</strong>, 
 se alguma não estiver UP, executar novamente o comando do docker compose até todas ficarem UP.<br/>
 O arquivo ```docker-composer.yml``` está comentado explicando cada um dos services.
 
-3. Acessar o PGAdmin, banco ```postgres``` e confirmar se a tabela ```public.usuario``` foi criada com sucesso.<br/>
+4. Acessar o PGAdmin, banco ```postgres``` e confirmar se a tabela ```public.usuario``` foi criada com sucesso.<br/>
 [Senhas do banco](#acessos-banco-de-dados)<br/>
 [Acessar PGAdmin](#acessar-pgadmin)
 
-4. Acessar o Control Center ```http://localhost:9021/```, e conferir se o tópico ```teste-kafka-connect```
+5. Acessar o Control Center ```http://localhost:9021/```, e conferir se o tópico ```teste-kafka-connect```
 está presente no ```Cluster 1```
 
-5. Monitorar o tópico do kafka através do Apache Kafka. 
+6. Monitorar o tópico do kafka através do Apache Kafka. 
 [Monitorar tópico](#plugar-um-consumidor-apache-kafka)
 
-6. <strong style="color:red">Após estar monitorando os eventos</strong> que estão chegando no tópico, por fim iremos criar o conector
+7. <strong style="color:red">Após estar monitorando os eventos</strong> que estão chegando no tópico, por fim iremos criar o conector
 no kafka para começar a emissão de eventos. <br/> 
 [Criar connector do kafka connect](#criar-conector-jdbc)<br/>
 [Deletar um conector já existente](#deletar-um-conector-jdbc)<br/>
