@@ -1,0 +1,32 @@
+{
+  "name": "copiar_tabela",
+  "config": {
+    "_comment": "The JDBC connector class. Dont change this if you want to use the JDBC Source.",
+    "connector.class": "io.confluent.connect.jdbc.JdbcSourceConnector",
+
+    "_comment": " --- JDBC-specific configuration below here  --- ",
+    "_comment": "JDBC connection URL. This will vary by RDBMS. Consult your manufacturer's handbook for more information",
+    "connection.url": "jdbc:postgresql://postgres-host:5432/postgres",
+    "connection.user": "postgres",
+    "connection.password": "admin",
+
+    "_comment": "The Kafka topic will be made up of this prefix, plus the table name  ",
+    "topic.prefix": "teste-kafka-connect",
+
+    "key.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "key.converter.schemas.enable":"true",
+
+    "_comment": "As above, but for the value of the message. Note that these key/value serialisation settings can be set globally for Connect and thus omitted for individual connector configs to make them shorter and clearer",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schemas.enable": "true",
+
+    "_comment": "Query that will fetch the data",
+    "query":"SELECT id, nome, kafka FROM public.usuario",
+
+    "_comment": "Interval in milliseconds that the query will fetch more records from the database",
+    "poll.interval.ms" : 20000,
+    "mode":"timestamp+incrementing",
+    "timestamp.column.name":"kafka",
+    "incrementing.column.name":"id"
+  }
+}
